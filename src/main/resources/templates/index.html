@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo" th:text="${profile != null ? profile.name : 'Portofolio'}">Portofolio</div>
+                <ul class="nav-links">
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#skills">Keahlian</a></li>
+                    <li><a href="#projects">Proyek</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 th:text="${profile != null ? 'Hai, Saya ' + profile.name : 'Hai, Saya Felix Angga Resky'}">Hai, Saya Felix Angga Resky</h1>
+        <p th:text="${profile != null ? profile.tagline : 'Seorang pengembang yang bersemangat menciptakan pengalaman web yang luar biasa'}">Seorang pengembang yang bersemangat menciptakan pengalaman web yang luar biasa</p>
+        <a href="#contact" class="btn">Hubungi Saya</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img th:src="@{/Assets/profil.jpg}" alt="Profile Picture">
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">Tentang Saya</h2>
+                    <p th:text="${profile != null ? profile.bio : 'Saya adalah seorang pengembang perangkat lunak yang memiliki hasrat untuk menciptakan aplikasi yang bersih, efisien, dan ramah pengguna. Dengan pengalaman beberapa tahun dalam pengembangan web, saya mengkhususkan diri dalam membangun situs web dan aplikasi web responsif menggunakan teknologi modern.'}">
+                        Saya adalah seorang pengembang perangkat lunak yang memiliki hasrat untuk menciptakan aplikasi yang bersih, efisien, dan ramah pengguna. Dengan pengalaman beberapa tahun dalam pengembangan web, saya mengkhususkan diri dalam membangun situs web dan aplikasi web responsif menggunakan teknologi modern.
+                    </p>
+                    <p th:text="${profile != null ? profile.additionalInfo : 'Saya senang memecahkan masalah kompleks dan terus belajar teknologi baru untuk tetap berada di garis depan pengembangan web.'}">
+                        Saya senang memecahkan masalah kompleks dan terus belajar teknologi baru untuk tetap berada di garis depan pengembangan web.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Keahlian Saya</h2>
+            <div class="skills-container">
+                <!-- Using Thymeleaf to iterate through skills from database -->
+                <div th:each="skill : ${skills}" class="skill-card">
+                    <div class="skill-icon">🚀</div>
+                    <h3 th:text="${skill.name}">Skill Name</h3>
+                    <p th:text="${skill.description}">Skill description goes here.</p>
+                </div>
+                
+                <!-- Fallback skills if none in database -->
+                <div th:if="${skills == null || skills.empty}" class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Pengembangan Web</h3>
+                    <p>HTML, CSS, JavaScript, React</p>
+                </div>
+                <div th:if="${skills == null || skills.empty}" class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Pengembangan Backend</h3>
+                    <p>Java, Spring Boot, Node.js</p>
+                </div>
+                <div th:if="${skills == null || skills.empty}" class="skill-card">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Basis Data</h3>
+                    <p>MySQL, MongoDB, PostgreSQL</p>
+                </div>
+                <!-- Added Python skill as a fallback option -->
+                <div th:if="${skills == null || skills.empty}" class="skill-card">
+                    <div class="skill-icon">🐍</div>
+                    <h3>Python</h3>
+                    <p>Data Analysis, Machine Learning, Flask</p>
+                </div>
+                <div th:if="${skills == null || skills.empty}" class="skill-card">
+                    <div class="skill-icon>">📱</div>
+                    <h3>Pengembangan Aplikasi Seluler</h3>
+                    <p>React Native, Flutter</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Proyek Saya</h2>
+            <div class="projects-container">
+                <!-- Using Thymeleaf to iterate through projects from database -->
+                <div th:each="project : ${projects}" class="project-card">
+                    <div class="project-image">
+                        <img th:src="${project.imageUrl}" alt="Project Image">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" th:text="${project.title}">Project Title</h3>
+                        <p th:text="${project.description}">Project description goes here.</p>
+                        <a th:href="${project.link}" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Fallback projects if none in database -->
+                <div th:if="${projects == null || projects.empty}" class="project-card">
+                    <div class="project-image">
+                        <img src="https://source.unsplash.com/random/600x400/?website" alt="Project Image">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">E-commerce Website</h3>
+                        <p>A fully responsive e-commerce platform built with Spring Boot and React.</p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div th:if="${projects == null || projects.empty}" class="project-card">
+                    <div class="project-image">
+                        <img src="https://source.unsplash.com/random/600x400/?mobile" alt="Project Image">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Task Management App</h3>
+                        <p>A task management application with user authentication and real-time updates.</p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Saya</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">📧</div>
+                        <div>
+                            <h3>Email</h3>
+                            <p th:text="${profile != null ? profile.email : 'felixangga077@gmail.com'}"></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">📱</div>
+                        <div>
+                            <h3>Telepon</h3>
+                            <p th:text="${profile != null ? profile.phone : '+62 895 3841 21689'}"></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">📍</div>
+                        <div>
+                            <h3>Lokasi</h3>
+                            <p th:text="${profile != null ? profile.location : 'Bandung, Indonesia'}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="post">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject">
+                        <textarea rows="5" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" th:href="${profile != null ? profile.linkedin : '#'}">LinkedIn</a>
+                <a href="#" th:href="${profile != null ? profile.github : '#'}">GitHub</a>
+                <a href="#" th:href="${profile != null ? profile.twitter : '#'}">Twitter</a>
+            </div>
+            <p>&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> - <span th:text="${profile != null ? profile.name : 'Portofolio Saya'}">Portofolio Saya</span>. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+</body>
+</html>
