@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,7 @@
                 <th>Penulis</th>
                 <th>Penerbit</th>
                 <th>Tahun Terbit</th>
-
+                <th>Aksi</th>
             </tr>
             </thead>
             <tbody>
@@ -28,6 +28,12 @@
                 <td th:text="${buku.penulis}"></td>
                 <td th:text="${buku.penerbit}"></td>
                 <td th:text="${buku.tahunTerbit}"></td>
+                <td>
+                    <a th:href="@{/buku/view/{id}(id=${buku.id})}" class="btn btn-info btn-sm">Detail</a>
+                    <a th:href="@{/buku/edit/{id}(id=${buku.id})}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{/buku/delete/{id}(id=${buku.id})}" class="btn btn-danger btn-sm" 
+                       onclick="return confirm('Apakah Anda yakin ingin menghapus buku ini?')">Hapus</a>
+                </td>
             </tr>
             </tbody>
         </table>

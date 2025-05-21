@@ -6,27 +6,27 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="mt-5">Tambah Buku</h1>
-    <form th:action="@{/buku/save}" th:object="${buku}" method="post">
+    <h1 class="mt-5" th:text="${buku.id == null ? 'Tambah Buku' : 'Edit Buku'}">Form Buku</h1>
+    <form th:action="@{${buku.id == null ? '/buku' : '/buku/update'}}" th:object="${buku}" method="post">
         <input type="hidden" th:field="*{id}"/>
         <div class="mb-3">
             <label for="judul" class="form-label">Judul</label>
-            <input type="text" class="form-control" id="judul" th:field="*{judul}"/>
+            <input type="text" class="form-control" id="judul" th:field="*{judul}" required/>
         </div>
         <div class="mb-3">
             <label for="penulis" class="form-label">Penulis</label>
-            <input type="text" class="form-control" id="penulis" th:field="*{penulis}"/>
+            <input type="text" class="form-control" id="penulis" th:field="*{penulis}" required/>
         </div>
         <div class="mb-3">
             <label for="penerbit" class="form-label">Penerbit</label>
-            <input type="text" class="form-control" id="penerbit" th:field="*{penerbit}"/>
+            <input type="text" class="form-control" id="penerbit" th:field="*{penerbit}" required/>
         </div>
         <div class="mb-3">
             <label for="tahunTerbit" class="form-label">Tahun Terbit</label>
-            <input type="number" class="form-control" id="tahunTerbit" th:field="*{tahunTerbit}"/>
+            <input type="text" class="form-control" id="tahunTerbit" th:field="*{tahunTerbit}" required/>
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="/buku" class="btn btn-secondary">Batal</a>
+        <a th:href="@{/buku}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 </body>
