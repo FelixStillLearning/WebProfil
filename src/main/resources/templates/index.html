@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Website</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/styles.css}"/>
-
+    <link rel="icon" type="image/x-icon" th:href="@{/Assets/favicon.ico}">
 
 </head>
 <body>
-    <!-- Header -->
-    <header>
+    <!-- Header -->    <header>
         <div class="container">
             <nav>
                 <div class="logo" th:text="${profile != null ? profile.name : 'Portofolio'}">Portofolio</div>
@@ -23,13 +21,13 @@
                 </ul>
             </nav>
         </div>
-    </header>
-
-    <!-- Hero Section -->
+    </header>    <!-- Hero Section -->
     <section class="hero">
-        <h1 th:text="${profile != null ? 'Hai, Saya ' + profile.name : 'Hai, Saya Felix Angga Resky'}">Hai, Saya Felix Angga Resky</h1>
-        <p th:text="${profile != null ? profile.tagline : 'Seorang pengembang yang bersemangat menciptakan pengalaman web yang luar biasa'}">Seorang pengembang yang bersemangat menciptakan pengalaman web yang luar biasa</p>
-        <a href="#contact" class="btn">Hubungi Saya</a>
+        <div class="hero-content">
+            <h1 th:text="${profile != null ? 'Hai, Saya ' + profile.name : 'Hai, Saya Felix Angga Resky'}">Hai, Saya Felix Angga Resky</h1>
+            <p th:text="${profile != null ? profile.tagline : 'Web developer yang selalu semangat bikin website keren dan aplikasi yang berguna buat banyak orang!'}">Web developer yang selalu semangat bikin website keren dan aplikasi yang berguna buat banyak orang!</p>
+            <a href="#projects" class="btn">Lihat Karya Saya</a>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -40,12 +38,10 @@
                     <img th:src="@{/Assets/profil.jpg}" alt="Profile Picture">
                 </div>
                 <div class="about-text">
-                    <h2 class="section-title">Tentang Saya</h2>
-                    <p th:text="${profile != null ? profile.bio : 'Saya adalah seorang pengembang perangkat lunak yang memiliki hasrat untuk menciptakan aplikasi yang bersih, efisien, dan ramah pengguna. Dengan pengalaman beberapa tahun dalam pengembangan web, saya mengkhususkan diri dalam membangun situs web dan aplikasi web responsif menggunakan teknologi modern.'}">
-                        Saya adalah seorang pengembang perangkat lunak yang memiliki hasrat untuk menciptakan aplikasi yang bersih, efisien, dan ramah pengguna. Dengan pengalaman beberapa tahun dalam pengembangan web, saya mengkhususkan diri dalam membangun situs web dan aplikasi web responsif menggunakan teknologi modern.
-                    </p>
-                    <p th:text="${profile != null ? profile.additionalInfo : 'Saya senang memecahkan masalah kompleks dan terus belajar teknologi baru untuk tetap berada di garis depan pengembangan web.'}">
-                        Saya senang memecahkan masalah kompleks dan terus belajar teknologi baru untuk tetap berada di garis depan pengembangan web.
+                    <h2 class="section-title">Tentang Saya</h2>                    <p th:text="${profile != null ? profile.bio : 'Halo! Saya seorang web developer yang suka banget bikin aplikasi yang simpel tapi berguna. Udah beberapa tahun nih berkutat dengan pengembangan web, dan sekarang lagi fokus bikin website dan aplikasi yang responsive dengan teknologi kekinian.'}">
+                        Halo! Saya seorang web developer yang suka banget bikin aplikasi yang simpel tapi berguna. Udah beberapa tahun nih berkutat dengan pengembangan web, dan sekarang lagi fokus bikin website dan aplikasi yang responsive dengan teknologi kekinian.
+                    </p>                    <p th:text="${profile != null ? profile.additionalInfo : 'Suka banget ngulik-ngulik teknologi baru dan mencoba hal-hal yang belum pernah dicoba sebelumnya. Selain coding, saya juga hobi main game dan nonton film Marvel!'}">
+                        Suka banget ngulik-ngulik teknologi baru dan mencoba hal-hal yang belum pernah dicoba sebelumnya. Selain coding, saya juga hobi main game dan nonton film Marvel!
                     </p>
                 </div>
             </div>
@@ -85,9 +81,8 @@
                     <div class="skill-icon">🐍</div>
                     <h3>Python</h3>
                     <p>Data Analysis, Machine Learning, Flask</p>
-                </div>
-                <div th:if="${skills == null || skills.empty}" class="skill-card">
-                    <div class="skill-icon>">📱</div>
+                </div>                <div th:if="${skills == null || skills.empty}" class="skill-card">
+                    <div class="skill-icon">📱</div>
                     <h3>Pengembangan Aplikasi Seluler</h3>
                     <p>React Native, Flutter</p>
                 </div>
@@ -111,26 +106,21 @@
                         <a th:href="${project.link}" class="btn">View Project</a>
                     </div>
                 </div>
-                
-                <!-- Fallback projects if none in database -->
-                <div th:if="${projects == null || projects.empty}" class="project-card">
+                  <!-- Fallback projects if none in database -->                <div th:if="${projects == null || projects.empty}" class="project-card">
                     <div class="project-image">
-                        <img src="https://source.unsplash.com/random/600x400/?website" alt="Project Image">
+                        <img th:src="@{/Assets/web.png}" alt="Project Image">
+                    </div>                    <div class="project-info">
+                        <h3 class="project-title">Website E-commerce - NexGen GFX</h3>
+                        <p>Website online shop yang kubuat pakai Spring Boot dan React. Desainnya responsive, bisa diakses dari HP atau laptop, dan punya fitur-fitur keren yang bikin pengalaman belanja online jadi lebih nyaman!</p>
+                        <a href="#" class="btn">Lihat Proyek</a>
                     </div>
-                    <div class="project-info">
-                        <h3 class="project-title">E-commerce Website</h3>
-                        <p>A fully responsive e-commerce platform built with Spring Boot and React.</p>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
-                </div>
-                <div th:if="${projects == null || projects.empty}" class="project-card">
+                </div>                <div th:if="${projects == null || projects.empty}" class="project-card">
                     <div class="project-image">
-                        <img src="https://source.unsplash.com/random/600x400/?mobile" alt="Project Image">
+                        <img th:src="@{/Assets/task.png}" alt="Project Image">
                     </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Task Management App</h3>
-                        <p>A task management application with user authentication and real-time updates.</p>
-                        <a href="#" class="btn">View Project</a>
+                    <div class="project-info">                        <h3 class="project-title">Aplikasi Manajemen Tugas</h3>
+                        <p>App tugas yg aku bikin buat bantu atur tugas sehari-hari. Ada login yg cukup aman, update langsung, dan tampilan yg gampang dipake. Lumayan buat naikin produktivitas, sih!</p>
+                        <a href="#" class="btn">Lihat Proyek</a>
                     </div>
                 </div>
             </div>
@@ -141,8 +131,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Hubungi Saya</h2>
-            <div class="contact-container">
-                <div class="contact-info">
+            <div class="contact-container">                <div class="contact-info">
                     <div class="contact-info-item">
                         <div class="contact-info-icon">📧</div>
                         <div>
@@ -165,29 +154,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form action="#" method="post">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="text" placeholder="Subject">
-                        <textarea rows="5" placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="#" th:href="${profile != null ? profile.linkedin : '#'}">LinkedIn</a>
-                <a href="#" th:href="${profile != null ? profile.github : '#'}">GitHub</a>
-                <a href="#" th:href="${profile != null ? profile.twitter : '#'}">Twitter</a>
+    <!-- Footer -->    <footer>
+        <div class="container">            <div class="social-links">
+                <a href="#" th:href="${profile != null ? profile.linkedin : '#'}"><span class="social-icon">💼</span> LinkedIn</a>
+                <a href="https://github.com/FelixStillLearning" target="_blank" th:href="${profile != null ? profile.github : 'https://github.com/FelixStillLearning'}"><span class="social-icon">🖥️</span> GitHub</a>
+                <a href="#" th:href="${profile != null ? profile.instagram : '#'}"><span class="social-icon">📸</span> Instagram</a>
             </div>
             <p>&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> - <span th:text="${profile != null ? profile.name : 'Portofolio Saya'}">Portofolio Saya</span>. Semua hak dilindungi.</p>
-        </div>
-    </footer>
+        </div>    </footer>
 </body>
 </html>
